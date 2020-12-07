@@ -20,7 +20,7 @@ namespace HarcosokApplication
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void kapcsolatl()
         {
             MySqlConnectionStringBuilder harcosadatbazis = new MySqlConnectionStringBuilder();
             harcosadatbazis.Server = "localhost";
@@ -40,7 +40,16 @@ namespace HarcosokApplication
                 return;
             }
 
+   
+        }
+        private void kapcsolatB()
+        {
             conn.Close();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+     
         }
     }
 }
