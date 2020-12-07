@@ -70,12 +70,47 @@ namespace HarcosokApplication
                                     ENGINE = InnoDB;";
                 sql.ExecuteNonQuery();
             }
-            catch (MySqlException ex)
+            catch (MySqlException ex) 
             {
                 MessageBox.Show(ex.Message, "Adatkapcsolati hiba");
                 return;
             }
             kapcsolatB();
+        }
+
+        private void btn_létrehoz_Click(object sender, EventArgs e)
+        {
+            kapcsolatl();
+            string nev = text_harcosNeve.Text.Trim();
+            if (nev == " ")
+            {
+                MessageBox.Show("Kérem adjon meg egy harcos nevet!");
+                text_harcosNeve.Focus();
+                return;
+            }
+            string query = "SELECT * FROM harcosok WHERE nev = '" + nev + "'";
+            using (MySqlCommand command = new MySqlCommand(query, conn))
+            {
+                MySqlDataReader reader = command.ExecuteReader();
+
+                if (!reader.HasRows)
+                {
+                    var datum = DateTime.Now.ToString("yyyy-MM-dd ");
+
+                    reader.Close();
+                    sql.CommandText = "INSERT INTO harcosok (`nev`, `letrehozas`) VALUES ('" + nev + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "')";
+                    sql.ExecuteNonQuery();
+                    text_harcosNeve.Clear();
+                    MessageBox.Show("Sikeres felvétel!");
+                    text_harcosNeve.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("Már létezik ez a harcos kérem próbájon újjat!");
+                    text_harcosNeve.Focus();
+                }
+
+            }
         }
     }
 }

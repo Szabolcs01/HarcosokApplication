@@ -58,6 +58,7 @@
             this.btn_létrehoz.TabIndex = 0;
             this.btn_létrehoz.Text = "LétreHozzás";
             this.btn_létrehoz.UseVisualStyleBackColor = true;
+            this.btn_létrehoz.Click += new System.EventHandler(this.btn_létrehoz_Click);
             // 
             // btn_hozzaad
             // 
