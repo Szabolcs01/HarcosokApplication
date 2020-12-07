@@ -68,6 +68,7 @@
             this.btn_hozzaad.TabIndex = 1;
             this.btn_hozzaad.Text = "Hozzáad";
             this.btn_hozzaad.UseVisualStyleBackColor = true;
+            this.btn_hozzaad.Click += new System.EventHandler(this.btn_hozzaad_Click);
             // 
             // btn_modosit
             // 
@@ -77,6 +78,7 @@
             this.btn_modosit.TabIndex = 2;
             this.btn_modosit.Text = "Módósít";
             this.btn_modosit.UseVisualStyleBackColor = true;
+            this.btn_modosit.Click += new System.EventHandler(this.btn_modosit_Click);
             // 
             // btn_Törlés
             // 
@@ -86,6 +88,7 @@
             this.btn_Törlés.TabIndex = 3;
             this.btn_Törlés.Text = "Törlés";
             this.btn_Törlés.UseVisualStyleBackColor = true;
+            this.btn_Törlés.Click += new System.EventHandler(this.btn_Törlés_Click);
             // 
             // label1
             // 

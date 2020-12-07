@@ -29,18 +29,10 @@ namespace HarcosokApplication
             harcosadatbazis.Database = "cs_harcosok";
             harcosadatbazis.CharacterSet = "utf8";
             conn = new MySqlConnection(harcosadatbazis.ToString());
-            try
-            {
-                conn.Open();
-                sql = conn.CreateCommand();
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message, "Adatkapcsolati hiba");
-                return;
-            }
+            conn.Open();
+            sql = conn.CreateCommand();
 
-   
+
         }
         private void kapcsolatB()
         {
@@ -111,6 +103,21 @@ namespace HarcosokApplication
                 }
 
             }
+        }
+
+        private void btn_hozzaad_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_modosit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Törlés_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
