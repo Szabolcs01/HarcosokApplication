@@ -29,8 +29,9 @@ namespace HarcosokApplication
             harcosadatbazis.Database = "cs_harcosok";
             harcosadatbazis.CharacterSet = "utf8";
             conn = new MySqlConnection(harcosadatbazis.ToString());
-            conn.Open();
+      
             sql = conn.CreateCommand();
+            conn.Open();
 
 
         }
@@ -67,8 +68,22 @@ namespace HarcosokApplication
                 MessageBox.Show(ex.Message, "Adatkapcsolati hiba");
                 return;
             }
+            Combohasznal();
             kapcsolatB();
         }
+        private void Combohasznal()
+        {
+            comboBox_használó.Items.Clear();
+            sql.CommandText = "SELECT nev FROM harcosok;";
+            using (MySqlDataReader hc = sql.ExecuteReader())
+            {
+                while (hc.Read())
+                {
+                    comboBox_használó.Items.Add(hc.GetString("nev"));
+                }
+            }
+        }
+
 
         private void btn_létrehoz_Click(object sender, EventArgs e)
         {
@@ -94,6 +109,7 @@ namespace HarcosokApplication
                     sql.ExecuteNonQuery();
                     text_harcosNeve.Clear();
                     MessageBox.Show("Sikeres felvétel!");
+                    Combohasznal();
                     text_harcosNeve.Focus();
                 }
                 else
@@ -107,6 +123,42 @@ namespace HarcosokApplication
 
         private void btn_hozzaad_Click(object sender, EventArgs e)
         {
+            kapcsolatl();
+            if (comboBox_használó.SelectedIndex < 0)
+            {
+                MessageBox.Show("Válasszon li eg yharcost!");
+                comboBox_használó.Focus();
+                return;
+            }
+            else if (textBox_kepességekneve.Text.Trim() == "")
+            {
+                MessageBox.Show("Kére adja meg a képesség nevet!");
+                textBox_kepességekneve.Focus();
+                return;
+            }
+            else if (textBox_leírás.Text.Trim() == "")
+            {
+                MessageBox.Show("Írjon egy képesség leírást!!");
+                textBox_leírás.Focus();
+                return;
+            }
+
+            sql.CommandText = @"INSERT INTO `kepessegek`(`nev`, `leiras`, `harcos_id`) 
+                VALUES('" + textBox_kepességekneve.Text.Trim() + "', '" + textBox_leírás.Text.Trim() + "', " +
+                "(SELECT id FROM harcosok WHERE nev = '" + comboBox_használó.SelectedItem + "'))";
+            if (sql.ExecuteNonQuery() == 1)
+            {
+              
+                MessageBox.Show("Sikeresen rögzítve!");
+            }
+            else
+            {
+                MessageBox.Show("Nem sikerült rögzíteni!");
+            }
+            comboBox_használó.SelectedIndex = -1;
+            textBox_kepességekneve.Text = "";
+            textBox_leírás.Text = "";
+            kapcsolatB();
 
         }
 
