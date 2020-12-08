@@ -72,7 +72,7 @@
             // 
             // btn_modosit
             // 
-            this.btn_modosit.Location = new System.Drawing.Point(356, 316);
+            this.btn_modosit.Location = new System.Drawing.Point(403, 284);
             this.btn_modosit.Name = "btn_modosit";
             this.btn_modosit.Size = new System.Drawing.Size(75, 23);
             this.btn_modosit.TabIndex = 2;
@@ -136,7 +136,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(326, 119);
+            this.label5.Location = new System.Drawing.Point(286, 98);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(37, 13);
             this.label5.TabIndex = 9;
@@ -160,9 +160,9 @@
             // 
             // textBox_leírás
             // 
-            this.textBox_leírás.Location = new System.Drawing.Point(329, 135);
+            this.textBox_leírás.Location = new System.Drawing.Point(278, 114);
             this.textBox_leírás.Name = "textBox_leírás";
-            this.textBox_leírás.Size = new System.Drawing.Size(100, 20);
+            this.textBox_leírás.Size = new System.Drawing.Size(200, 20);
             this.textBox_leírás.TabIndex = 12;
             // 
             // comboBox_használó
@@ -202,9 +202,9 @@
             // 
             // textBox_képességekleírása
             // 
-            this.textBox_képességekleírása.Location = new System.Drawing.Point(329, 258);
+            this.textBox_képességekleírása.Location = new System.Drawing.Point(278, 258);
             this.textBox_képességekleírása.Name = "textBox_képességekleírása";
-            this.textBox_képességekleírása.Size = new System.Drawing.Size(100, 20);
+            this.textBox_képességekleírása.Size = new System.Drawing.Size(200, 20);
             this.textBox_képességekleírása.TabIndex = 17;
             // 
             // listBox_harcosok

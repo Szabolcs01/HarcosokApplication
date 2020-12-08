@@ -19,7 +19,6 @@ namespace HarcosokApplication
         {
             InitializeComponent();
         }
-
         private void kapcsolatl()
         {
             MySqlConnectionStringBuilder harcosadatbazis = new MySqlConnectionStringBuilder();
@@ -29,10 +28,8 @@ namespace HarcosokApplication
             harcosadatbazis.Database = "cs_harcosok";
             harcosadatbazis.CharacterSet = "utf8";
             conn = new MySqlConnection(harcosadatbazis.ToString());
-      
             sql = conn.CreateCommand();
             conn.Open();
-
 
         }
         private void kapcsolatB()
@@ -71,6 +68,7 @@ namespace HarcosokApplication
             }
             Combohasznal();
             kapcsolatB();
+            listBox_harcosokF();
         }
         private void Combohasznal()
         {
@@ -84,8 +82,6 @@ namespace HarcosokApplication
                 }
             }
         }
-
-
         private void btn_létrehoz_Click(object sender, EventArgs e)
         {
             kapcsolatl();
@@ -121,7 +117,6 @@ namespace HarcosokApplication
 
             }
         }
-
         private void btn_hozzaad_Click(object sender, EventArgs e)
         {
             kapcsolatl();
@@ -143,13 +138,11 @@ namespace HarcosokApplication
                 textBox_leírás.Focus();
                 return;
             }
-
             sql.CommandText = @"INSERT INTO `kepessegek`(`nev`, `leiras`, `harcos_id`) 
                 VALUES('" + textBox_kepességekneve.Text.Trim() + "', '" + textBox_leírás.Text.Trim() + "', " +
                 "(SELECT id FROM harcosok WHERE nev = '" + comboBox_használó.SelectedItem + "'))";
             if (sql.ExecuteNonQuery() == 1)
             {
-              
                 MessageBox.Show("Sikeresen rögzítve!");
             }
             else
@@ -162,7 +155,6 @@ namespace HarcosokApplication
             kapcsolatB();
 
         }
-
         private void btn_modosit_Click(object sender, EventArgs e)
         {
             kapcsolatl();
@@ -172,7 +164,6 @@ namespace HarcosokApplication
                 listBox_képességek.Focus();
                 return;
             }
-
             sql.CommandText = @"SELECT `nev`, `leiras` FROM `kepessegek` WHERE `nev` = '" + listBox_képességek.SelectedItem ;
             using (MySqlDataReader dr = sql.ExecuteReader())
             {
@@ -195,6 +186,18 @@ namespace HarcosokApplication
             kapcsolatB();
 
         }
+        private void listBox_harcosokF()
+        {
+            listBox_harcosok.Items.Clear();
+            sql.CommandText = "SELECT nev, letrehozas FROM harcosok WHERE 1";
+            using (MySqlDataReader dr = sql.ExecuteReader())
+            {
+                while (dr.Read())
+                {
+                    listBox_harcosok.Items.Add(dr.GetString("nev") + "" + dr.GetDateTime("letrehozas"));
+                }
+            }
+        }
 
         private void btn_Törlés_Click(object sender, EventArgs e)
         {
@@ -206,12 +209,11 @@ namespace HarcosokApplication
                 listBox_képességek.Focus();
                 return;
             }
-                sql.CommandText = @"DELETE FROM `kepessegek` WHERE `nev` = '" + listBox_képességek.SelectedItem ;
-                sql.ExecuteNonQuery();
-                listBox_képességek.Text = " ";
+                   sql.CommandText = @"DELETE FROM `kepessegek` WHERE `nev` = '" + listBox_képességek.SelectedItem ;
+                 sql.ExecuteNonQuery();
+                 listBox_képességek.Text = " ";
            
             MessageBox.Show("Sikeres törlés");
-
             kapcsolatB();
         }
     }
