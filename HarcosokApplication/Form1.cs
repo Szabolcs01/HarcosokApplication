@@ -169,7 +169,21 @@ namespace HarcosokApplication
 
         private void btn_Törlés_Click(object sender, EventArgs e)
         {
+            kapcsolatl();
 
+            if (listBox_képességek.SelectedIndex < 0)
+            {
+                MessageBox.Show("Nincs kiválasztva hogy mit akar törölni!");
+                listBox_képességek.Focus();
+                return;
+            }
+                sql.CommandText = @"DELETE FROM `kepessegek` WHERE `nev` = '" + listBox_képességek.SelectedItem ;
+                sql.ExecuteNonQuery();
+                listBox_képességek.Text = " ";
+           
+            MessageBox.Show("Sikeres törlés");
+
+            kapcsolatB();
         }
     }
 }
