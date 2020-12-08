@@ -227,7 +227,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(814, 461);
+            this.ClientSize = new System.Drawing.Size(490, 461);
             this.Controls.Add(this.listBox_képességek);
             this.Controls.Add(this.listBox_harcosok);
             this.Controls.Add(this.textBox_képességekleírása);

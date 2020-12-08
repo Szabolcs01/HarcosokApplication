@@ -45,22 +45,23 @@ namespace HarcosokApplication
             try
             {
                 kapcsolatl();
-
                 sql.CommandText = @"CREATE TABLE IF NOT EXISTS `harcosok` ( 
                                     `id` INT NOT NULL AUTO_INCREMENT , 
-                                    `nev` VARCHAR(50) NOT NULL , 
+                                    `nev` VARCHAR(255) NOT NULL , 
                                     `letrehozas` DATETIME NOT NULL ,
                                     PRIMARY KEY (`id`), 
-                                    UNIQUE (`nev`)) ENGINE = InnoDB;";
+                                    UNIQUE (`nev`));";
+
                 sql.ExecuteNonQuery();
+
                 sql.CommandText = @"CREATE TABLE IF NOT EXISTS `kepessegek` ( 
                                     `id` INT NOT NULL AUTO_INCREMENT , 
-                                    `nev` VARCHAR(50) NOT NULL , 
+                                    `nev` VARCHAR(255) NOT NULL , 
                                     `leiras` VARCHAR(255) NOT NULL , 
                                     `harcos_id` INT NOT NULL , 
                                     PRIMARY KEY (`id`),
-                                    FOREIGN KEY (`harcos_id`) REFERENCES harcosok(`id`))
-                                    ENGINE = InnoDB;";
+                                    FOREIGN KEY (`harcos_id`) REFERENCES harcosok(`id`));";
+
                 sql.ExecuteNonQuery();
             }
             catch (MySqlException ex) 
