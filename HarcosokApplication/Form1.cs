@@ -165,12 +165,12 @@ namespace HarcosokApplication
                 return;
             }
             sql.CommandText = @"SELECT `nev`, `leiras` FROM `kepessegek` WHERE `nev` = '" + listBox_képességek.SelectedItem ;
-            using (MySqlDataReader dr = sql.ExecuteReader())
+            using (MySqlDataReader hc = sql.ExecuteReader())
             {
-                dr.Read();
-                if (dr.GetString("leiras") != listBox_képességek.Text)
+                hc.Read();
+                if (hc.GetString("leiras") != listBox_képességek.Text)
                 {
-                    dr.Close();
+                    hc.Close();
                     sql.CommandText = @"UPDATE `kepessegek` SET `leiras`= '" + listBox_képességek.Text + "' WHERE `nev` = '" + listBox_képességek.SelectedItem ;
                     sql.ExecuteNonQuery();
   
@@ -190,11 +190,11 @@ namespace HarcosokApplication
         {
             listBox_harcosok.Items.Clear();
             sql.CommandText = "SELECT nev, letrehozas FROM harcosok WHERE 1";
-            using (MySqlDataReader dr = sql.ExecuteReader())
+            using (MySqlDataReader hc = sql.ExecuteReader())
             {
-                while (dr.Read())
+                while (hc.Read())
                 {
-                    listBox_harcosok.Items.Add(dr.GetString("nev") + "" + dr.GetDateTime("letrehozas"));
+                    listBox_harcosok.Items.Add(hc.GetString("nev") + "" + hc.GetDateTime("letrehozas"));
                 }
             }
         }
